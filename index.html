@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verkupp - Consultoria de TI Estratégica</title>
+    
+    <!-- Fontes (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. VARIÁVEIS E RESET --- */
+        :root {
+            --primary-blue: #0066FF;
+            --blue-dark: #0052CC;
+            --blue-light: #E6F0FF;
+            --cyber-teal: #00D4C6;
+            --dark-bg: #0A0F1C;
+            --dark-card: #131A2E;
+            --gray-bg: #F8FAFC;
+            --gray-text: #64748B;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0, 102, 255, 0.08);
+            --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--gray-bg);
+            color: #1E293B;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+        
+        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .hidden { display: none !important; animation: fadeOut 0.3s forwards; }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        
+        /* --- 2. HEADER E NAVEGAÇÃO --- */
+        header {
+            background-color: var(--white);
+            height: 80px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.5px;
+            color: var(--dark-bg);
+        }
+        .logo span { 
+            color: var(--primary-blue);
+            position: relative;
+        }
+        .logo span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--cyber-teal);
+            border-radius: 2px;
+        }
+        
+        .nav-menu { display: flex; gap: 30px; }
+        
+        .nav-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-text);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-link:hover, .nav-link.active { color: var(--primary-blue); }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-blue);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        
+        .cta-btn-nav {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+        }
+        .cta-btn-nav:hover { 
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
+        }
+        
+        .mobile-toggle { display: none; font-size: 24px; cursor: pointer; color: var(--dark-bg); }
+        
+        /* --- 3. COMPONENTES GERAIS --- */
+        .section-padding { padding: 100px 0; }
+        .text-center { text-align: center; }
+        
+        .section-title {
+            font-size: 48px;
+            color: var(--dark-bg);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .section-subtitle {
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 6px;
+        }
+        
+        .btn-primary { 
+            background: var(--primary-blue); 
+            color: var(--white); 
+            box-shadow: var(--shadow);
+        }
+        .btn-primary:hover { 
+            background: var(--blue-dark); 
+            transform: translateY(-2px); 
+            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.2);
+        }
+        
+        .btn-outline { 
+            border: 2px solid var(--primary-blue); 
+            color: var(--primary-blue); 
+            background: transparent; 
+        }
+        .btn-outline:hover { 
+            background: var(--primary-blue); 
+            color: var(--white); 
+            transform: translateY(-2px);
+        }
+        
+        .btn-cyber {
+            background: linear-gradient(90deg, var(--primary-blue), var(--cyber-teal));
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .btn-cyber:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 212, 198, 0.3);
+        }
+        
+        /* --- 4. HOME SECTION (6 SEÇÕES) --- */
+        
+        /* Hero */
+        .hero {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 198, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 60px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+        
+        .hero h1 span {
+            color: var(--cyber-teal);
+            position: relative;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #CBD5E1;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        
+        /* Serviços (3 colunas) */
+        .services-section {
+            background-color: var(--white);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #E2E8F0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.1);
+            border-color: var(--primary-blue);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--blue-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+        
+        .service-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark-bg);
+        }
+        
+        /* Cases */
+        .cases-section {
+            background-color: var(--gray-bg);
+        }
+        
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .case-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .case-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .case-img {
+            height: 200px;
+            background-color: #1E293B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 14px;
+        }
+        
+        .case-content {
+            padding: 25px;
+        }
+        
+        .case-stat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        
+        /* Tecnologias */
+        .tech-section {
+            background-color: var(--dark-bg);
+            color: var(--white);
+        }
+        
+        .tech-section .section-title {
+            color: var(--white);
+        }
+        
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 120px;
+        }
+        
+        .tech-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--dark-card);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--cyber-teal);
+        }
+        
+        /* Processo */
+        .process-section {
+            background-color: var(--white);
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--cyber-teal));
+            z-index: 1;
+        }
+        
+        .process-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 200px;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border: 3px solid var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 0 auto 20px;
+        }
+        
+        /* CTA Final */
+        .final-cta {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a2238 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .final-cta .section-title {
+            color: var(--white);
+        }
+        
+        .cta-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--cyber-teal);
+            margin-bottom: 5px;
+        }
+        
+        /* --- 5. DEMAIS PÁGINAS --- */
+        
+        /* SERVIÇOS */
+        .service-detail-section {
+            background-color: var(--white);
+        }
+        
+        .service-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .detail-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-blue);
+        }
+        
+        .detail-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark-bg);
+        }
+        
+        .detail-list {
+            margin-top: 20px;
+        }
+        
+        .detail-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .detail-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+        
+        /* CASOS DE SUCESSO */
+        .success-section {
+            background-color: var(--gray-bg);
+        }
+        
+        .success-stories {
+            margin-top: 60px;
+        }
+        
+        .story-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .story-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .story-img {
+            width: 200px;
+            height: 120px;
+            background: var(--dark-card);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        /* EQUIPE */
+        .team-section {
+            background-color: var(--white);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .team-card {
+            text-align: center;
+        }
+        
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--blue-light);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: var(--primary-blue);
+        }
+        
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* CONTATO */
+        .contact-section {
+            background-color: var(--gray-bg);
+        }
+        
+        .contact-layout {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+        
+        .contact-info, .contact-form-wrapper {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .info-box {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .info-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+        }
+        
+        .info-content {
+            font-size: 16px;
+            color: #1E293B;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #CBD5E1;
+            background: var(--white);
+            font-family: 'Inter', sans-serif;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+        
+        /* BLOG */
+        .blog-section {
+            background-color: var(--white);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .blog-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .blog-img {
+            height: 180px;
+            background-color: var(--dark-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .blog-content {
+            padding: 25px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: var(--gray-text);
+            margin-bottom: 15px;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--dark-bg);
+            color: var(--white);
+            padding: 80px 0 30px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #CBD5E1;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--cyber-teal);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94A3B8;
+            font-size: 14px;
+        }
+        
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute;
+                top: 80px; 
+                left: 0; 
+                width: 100%; 
+                background: var(--white);
+                padding: 20px; 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            
+            .mobile-toggle { display: block; }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .process-step {
+                width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .navbar.mobile-active .nav-menu {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGAÇÃO -->
+    <header>
+        <div class="container navbar" id="navbar">
+            <div class="logo">VERKUPP<span>.</span></div>
+            <div class="mobile-toggle" onclick="toggleMobileMenu()">☰</div>
+            <ul class="nav-menu">
+                <li><a class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li><a class="nav-link" onclick="showPage('services')">Serviços</a></li>
+                <li><a class="nav-link" onclick="showPage('success')">Casos</a></li>
+                <li><a class="nav-link" onclick="showPage('team')">Equipe</a></li>
+                <li><a class="nav-link" onclick="showPage('blog')">Blog</a></li>
+                <li><a class="cta-btn-nav" onclick="showPage('contact')">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- PÁGINAS (SEÇÕES) -->
+    
+    <!-- 1. HOME (COM 6 SEÇÕES) -->
+    <div id="home" class="page-section fade-in">
+        
+        <!-- Seção 1: Hero -->
+        <section class="hero">
+            <div class="container hero-content">
+                <span class="section-subtitle" style="color: var(--cyber-teal); margin-bottom: 20px;">Transformação Digital</span>
+                <h1>Consultoria de TI <span>Estratégica</span> para Negócios Inovadores</h1>
+                <p>Potencializamos sua empresa com soluções tecnológicas personalizadas, segurança de dados e estratégias digitais que aceleram resultados.</p>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 40px;">
+                    <button class="btn btn-cyber" onclick="showPage('contact')">Falar com Especialista</button>
+                    <button class="btn btn-outline" onclick="showPage('services')">Nossos Serviços</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção 2: Serviços -->
+        <section class="section-padding services-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-subtitle">Nossa Expertise</span>
+                    <h2 class="section-title">Soluções Tecnológicas Integradas</h2>
+                    <p style="max-width: 700px; margin: 0 auto 20px; color: var(--gray-text);">Oferecemos um portfólio completo de serviços de TI para impulsionar sua transformação digital.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="service-title">Cloud & Infraestrutura</h3>
+                        <p>Migração, gestão e otimização de ambientes em nuvem (AWS, Azure, Google Cloud).</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="service-title">Segurança Cibernética</h3>
+                        <p>Proteção de dados, compliance LGPD, pentest e gestão de vulnerabilidades.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="service-title">Análise de Dados & BI</h3>
+                        <p>Business Intelligence, Big Data e analytics para decisões estratégicas baseadas em dados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção 3: Casos de Sucesso -->
+        <section class="section-padding cases-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-subtitle">Resultados Comprovados</span>
+                    <h2 class="section-title">Casos de Transformação Digital</h2>
+                    <p style="max-width: 700px; margin: 0 auto 20px; color: var(--gray-text);">Empresas que confiaram na Verkupp e alcançaram resultados excepcionais.</p>
+                </div>
+                <div class="cases-grid">
+                    <div class="case-card">
+                        <div class="case-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            E-commerce
+                        </div>
+                        <div class="case-content">
+                            <h3>Expansão de Plataforma E-commerce</h3>
+                            <p>Migração para arquitetura serverless que reduziu custos em 40% e aumentou performance em 300%.</p>
+                            <div class="case-stat">
+                                <i class="fas fa-arrow-up" style="color: var(--cyber-teal);"></i>
+                                <span>+300% Performance</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-card">
+                        <div class="case-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            Fintech
+                        </div>
+                        <div class="case-content">
+                            <h3>Segurança para Fintech</h3>
+                            <p>Implementação de framework de segurança completo e compliance financeiro em 6 meses.</p>
+                            <div class="case-stat">
+                                <i class="fas fa-check-circle" style="color: var(--cyber-teal);"></i>
+                                <span>100% Compliance</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-card">
+                        <div class="case-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            Saúde
+                        </div>
+                        <div class="case-content">
+                            <h3>Sistema de Gestão Hospitalar</h3>
+                            <p>Desenvolvimento de plataforma integrada que reduziu tempo de atendimento em 25%.</p>
+                            <div class="case-stat">
+                                <i class="fas fa-clock" style="color: var(--cyber-teal);"></i>
+                                <span>-25% Tempo de Atendimento</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção 4: Tecnologias -->
+        <section class="section-padding tech-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-subtitle" style="color: var(--cyber-teal);">Parcerias Estratégicas</span>
+                    <h2 class="section-title">Tecnologias que Dominamos</h2>
+                    <p style="max-width: 700px; margin: 0 auto 20px; color: #CBD5E1;">Trabalhamos com as principais plataformas e ferramentas do mercado para garantir a melhor solução para seu negócio.</p>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <span>AWS</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-microsoft"></i>
+                        </div>
+                        <span>Azure</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <span>Google Cloud</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <span>SQL/NoSQL</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-docker"></i>
+                        </div>
+                        <span>Docker</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <span>React</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção 5: Processo -->
+        <section class="section-padding process-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-subtitle">Metodologia Comprovada</span>
+                    <h2 class="section-title">Nosso Processo de Trabalho</h2>
+                    <p style="max-width: 700px; margin: 0 auto 20px; color: var(--gray-text);">Um método estruturado que garante eficiência, transparência e resultados em cada projeto.</p>
+                </div>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Diagnóstico</h3>
+                        <p>Análise profunda do ambiente atual e identificação de oportunidades.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>Estratégia</h3>
+                        <p>Planejamento personalizado com roadmap claro e objetivos mensuráveis.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Implementação</h3>
+                        <p>Execução com metodologias ágeis e acompanhamento contínuo.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Otimização</h3>
+                        <p>Monitoramento, ajustes e melhorias contínuas para máximo desempenho.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção 6: CTA Final -->
+        <section class="final-cta">
+            <div class="container">
+                <h2 class="section-title">Pronto para Transformar sua TI?</h2>
+                <p style="max-width: 700px; margin: 0 auto 30px; color: #CBD5E1; font-size: 18px;">Junte-se a mais de 50 empresas que já otimizaram seus processos e aumentaram sua competitividade com nossa consultoria.</p>
+                
+                <div class="cta-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div>Clientes Satisfeitos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">120+</div>
+                        <div>Projetos Concluídos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99%</div>
+                        <div>Taxa de Sucesso</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-cyber" onclick="showPage('contact')" style="padding: 18px 45px; font-size: 16px;">Solicitar Consultoria Gratuita</button>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 2. SERVIÇOS (DETALHADO) -->
+    <div id="services" class="page-section hidden fade-in">
+        <section class="section-padding service-detail-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-subtitle">Portfólio Completo</span>
+                    <h2 class="section-title">Serviços de Consultoria em TI</h2>
+                    <p style="max-width: 800px; margin: 0 auto 40px; color: var(--gray-text); font-size: 18px;">Oferecemos soluções especializadas para cada desafio tecnológico do seu negócio, desde infraestrutura até transformação digital.</p>
+                </div>
+                
+                <div class="service-detail-grid">
+                    <div class="detail-card">
+                        <h3>Consultoria Estratégica em TI</h3>
+                        <p>Desenvolvimento de roadmap tecnológico alinhado aos objetivos de negócio, governança de TI e análise de maturidade digital.</p>
+                        <ul class="detail-list">
+                            <li>Roadmap Tecnológico</li>
+                            <li>Governança de TI</li>
+                            <li>Análise de Maturidade Digital</li>
+                            <li>Otimização de Processos</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <h3>Transformação Digital</h3>
+                        <p>Migração para ambientes cloud, modernização de aplicações legadas e implementação de cultura ágil e DevOps.</p>
+                        <ul class="detail-list">
+                            <li>Migração para Cloud</li>
+                            <li>Modernização de Aplicações</li>
+                            <li>Implementação DevOps</li>
+                            <li>Automação de Processos</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <h3>Segurança da Informação</h3>
+                        <p>Proteção completa do seu ambiente digital com frameworks de segurança, compliance LGPD e gestão de riscos cibernéticos.</p>
+                        <ul class="detail-list">
+                            <li>Compliance LGPD</li>
+                            <li>Gestão de Vulnerabilidades</li>
+                            <li>Plano de Continuidade</li>
+                            <li>Treinamento em Segurança</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <h3>Gestão de Dados & Analytics</h3>
+                        <p>Implementação de data lakes, business intelligence, machine learning e governança de dados para decisões estratégicas.</p>
+                        <ul class="detail-list">
+                            <li>Business Intelligence</li>
+                            <li>Data Lakes & Warehouses</li>
+                            <li>Machine Learning</li>
+                            <li>Governança de Dados</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <button class="btn btn-primary" onclick="showPage('contact')">Conversar sobre um Projeto</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 3. CASOS DE SUCESSO -->
+    <div id="success" class="page-section hidden fade-in">
+        <section class="section-padding success-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-subtitle">Impacto Real</span>
+                    <h2 class="section-title">Casos de Sucesso Detalhados</h2>
+                    <p style="max-width: 800px; margin: 0 auto 40px; color: var(--gray-text); font-size: 18px;">Conheça histórias de transformação digital que geraram resultados mensuráveis para nossos clientes.</p>
+                </div>
+                
+                <div class="success-stories">
+                    <div class="story-card">
+                        <div class="story-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            Varejo Digital
+                        </div>
+                        <div class="story-content">
+                            <h3>Redefinição da Arquitetura de E-commerce</h3>
+                            <p><strong>Desafio:</strong> Plataforma lenta e instável durante picos de vendas, resultando em perda de receita.</p>
+                            <p><strong>Solução:</strong> Reestruturamos a arquitetura para microserviços em Kubernetes, implementamos CDN global e otimizamos o banco de dados.</p>
+                            <p><strong>Resultado:</strong> 300% de aumento na performance, 99.9% de uptime e redução de 40% nos custos de infraestrutura.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <div class="story-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            Instituição Financeira
+                        </div>
+                        <div class="story-content">
+                            <h3>Projeto de Compliance e Segurança</h3>
+                            <p><strong>Desafio:</strong> Necessidade de adequação às regulamentações do BACEN e proteção contra ameaças cibernéticas.</p>
+                            <p><strong>Solução:</strong> Implementamos framework de segurança completo, política de acesso baseada em zero trust e sistema de monitoramento 24/7.</p>
+                            <p><strong>Resultado:</strong> 100% de compliance regulatória, redução de 95% em incidentes de segurança e certificação ISO 27001.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <div class="story-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            Indústria 4.0
+                        </div>
+                        <div class="story-content">
+                            <h3>Digitalização de Processos Industriais</h3>
+                            <p><strong>Desafio:</strong> Processos manuais e desconexão entre sistemas causavam ineficiências na linha de produção.</p>
+                            <p><strong>Solução:</strong> Desenvolvimento de plataforma IoT integrada, dashboard de analytics em tempo real e automação de workflows.</p>
+                            <p><strong>Resultado:</strong> Aumento de 25% na eficiência produtiva, redução de 15% no desperdício e visibilidade completa da operação.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 4. EQUIPE -->
+    <div id="team" class="page-section hidden fade-in">
+        <section class="section-padding team-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-subtitle">Especialistas</span>
+                    <h2 class="section-title">Nossa Equipe de Consultores</h2>
+                    <p style="max-width: 800px; margin: 0 auto 40px; color: var(--gray-text); font-size: 18px;">Profissionais com vasta experiência em transformação digital, certificações internacionais e know-how em diversas indústrias.</p>
+                </div>
+                
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-photo">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Marcelo Silva</h3>
+                        <p style="color: var(--primary-blue); font-weight: 600; margin-bottom: 5px;">CEO & Sócio Fundador</p>
+                        <p style="color: var(--gray-text); font-size: 14px;">20+ anos em consultoria de TI. Ex-diretor de tecnologia em multinacional.</p>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-photo">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Ana Paula Rocha</h3>
+                        <p style="color: var(--primary-blue); font-weight: 600; margin-bottom: 5px;">Head de Segurança</p>
+                        <p style="color: var(--gray-text); font-size: 14px;">Especialista em cibersegurança com certificações CISSP e CISM.</p>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-photo">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Ricardo Mendes</h3>
+                        <p style="color: var(--primary-blue); font-weight: 600; margin-bottom: 5px;">Arquiteto de Cloud</p>
+                        <p style="color: var(--gray-text); font-size: 14px;">Certificado AWS Solutions Architect e Microsoft Azure Expert.</p>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-photo">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Camila Fernandes</h3>
+                        <p style="color: var(--primary-blue); font-weight: 600; margin-bottom: 5px;">Consultora de Dados</p>
+                        <p style="color: var(--gray-text); font-size: 14px;">PhD em Ciência de Dados com experiência em projetos de Big Data.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <button class="btn btn-outline" onclick="showPage('contact')">Trabalhe Conosco</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 5. BLOG -->
+    <div id="blog" class="page-section hidden fade-in">
+        <section class="section-padding blog-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-subtitle">Conhecimento</span>
+                    <h2 class="section-title">Insights & Tendências de TI</h2>
+                    <p style="max-width: 800px; margin: 0 auto 40px; color: var(--gray-text); font-size: 18px;">Artigos, análises e perspectivas sobre as mais recentes inovações tecnológicas e suas aplicações nos negócios.</p>
+                </div>
+                
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <div class="blog-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            Inteligência Artificial
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> 15 Mai, 2024</span>
+                                <span><i class="far fa-clock"></i> 5 min leitura</span>
+                            </div>
+                            <h3>IA Generativa na Transformação de Negócios</h3>
+                            <p>Como as ferramentas de IA generativa estão revolucionando processos criativos e operacionais nas empresas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            Segurança
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> 2 Mai, 2024</span>
+                                <span><i class="far fa-clock"></i> 7 min leitura</span>
+                            </div>
+                            <h3>Zero Trust: O Novo Paradigma de Segurança</h3>
+                            <p>Implementando arquitetura Zero Trust para proteger ambientes híbridos e remotos em tempos de trabalho distribuído.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            Cloud Computing
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> 20 Abr, 2024</span>
+                                <span><i class="far fa-clock"></i> 6 min leitura</span>
+                            </div>
+                            <h3>Multi-cloud: Estratégia ou Complexidade?</h3>
+                            <p>Analisando os prós e contras da adoção de múltiplas nuvens e como criar uma estratégia eficiente.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <button class="btn btn-primary">Ver Todos os Artigos</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 6. CONTATO -->
+    <div id="contact" class="page-section hidden fade-in">
+        <section class="section-padding contact-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-subtitle">Vamos Conversar</span>
+                    <h2 class="section-title">Entre em Contato</h2>
+                    <p style="max-width: 800px; margin: 0 auto 40px; color: var(--gray-text); font-size: 18px;">Tem um projeto em mente? Vamos discutir como podemos ajudar sua empresa a alcançar seus objetivos tecnológicos.</p>
+                </div>
+                
+                <div class="contact-layout">
+                    <!-- Informações -->
+                    <div class="contact-info">
+                        <div class="info-box">
+                            <div class="info-label">Endereço</div>
+                            <div class="info-content">
+                                Av. Brigadeiro Faria Lima, 3500 - 10º andar<br>
+                                São Paulo - SP, Brasil
+                            </div>
+                        </div>
+                        
+                        <div class="info-box">
+                            <div class="info-label">Telefone & WhatsApp</div>
+                            <div class="info-content">
+                                (11) 99999-9999<br>
+                                (11) 3030-3030
+                            </div>
+                        </div>
+                        
+                        <div class="info-box">
+                            <div class="info-label">Horário de Funcionamento</div>
+                            <div class="info-content">
+                                Segunda a Sexta: 08h às 18h<br>
+                                Sábado: Fechado
+                            </div>
+                        </div>
+                        
+                        <div class="info-box">
+                            <div class="info-label">E-mail</div>
+                            <div class="info-content">
+                                contato@verkupp.com.br<br>
+                                comercial@verkupp.com.br
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formulário -->
+                    <div class="contact-form-wrapper">
+                        <form onsubmit="event.preventDefault(); alert('Solicitação enviada com sucesso! Nossa equipe entrará em contato em até 24h.');">
+                            <div class="form-group">
+                                <label>Nome Completo *</label>
+                                <input type="text" class="form-control" placeholder="Seu nome" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Empresa *</label>
+                                <input type="text" class="form-control" placeholder="Nome da empresa" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>E-mail *</label>
+                                <input type="email" class="form-control" placeholder="seu@email.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Telefone *</label>
+                                <input type="tel" class="form-control" placeholder="(11) 99999-9999" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Serviço de Interesse *</label>
+                                <select class="form-control" required>
+                                    <option value="">Selecione uma opção</option>
+                                    <option>Consultoria Estratégica</option>
+                                    <option>Transformação Digital</option>
+                                    <option>Segurança da Informação</option>
+                                    <option>Gestão de Dados & Analytics</option>
+                                    <option>Outros</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Mensagem</label>
+                                <textarea rows="4" class="form-control" placeholder="Descreva brevemente sua necessidade ou projeto..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">Enviar Solicitação</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo" style="font-size: 28px; color: var(--white); margin-bottom: 20px;">VERKUPP<span>.</span></div>
+                    <p style="color: #CBD5E1; margin-bottom: 20px; max-width: 300px;">Consultoria de TI estratégica para negócios inovadores. Transformação digital com resultados mensuráveis.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Serviços</h3>
+                    <ul class="footer-links">
+                        <li><a onclick="showPage('services')">Consultoria Estratégica</a></li>
+                        <li><a onclick="showPage('services')">Transformação Digital</a></li>
+                        <li><a onclick="showPage('services')">Segurança da Informação</a></li>
+                        <li><a onclick="showPage('services')">Gestão de Dados & Analytics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a onclick="showPage('home')">Home</a></li>
+                        <li><a onclick="showPage('team')">Equipe</a></li>
+                        <li><a onclick="showPage('success')">Casos de Sucesso</a></li>
+                        <li><a onclick="showPage('blog')">Blog</a></li>
+                        <li><a onclick="showPage('contact')">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Whitepapers</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Ferramentas Gratuitas</a></li>
+                        <li><a href="#">Glossário de TI</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 Verkupp Consultoria em TI. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT (LÓGICA SPA) -->
+    <script>
+        function showPage(pageId) {
+            // 1. Esconder todas as seções
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // 2. Mostrar a seção desejada
+            const activeSection = document.getElementById(pageId);
+            if (activeSection) {
+                activeSection.classList.remove('hidden');
+                // Scroll para o topo suavemente
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // 3. Atualizar o link ativo no menu
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Verifica se o onclick desse link aponta para a pagina atual
+                if (link.getAttribute('onclick').includes(pageId)) {
+                    link.classList.add('active');
+                }
+            });
+
+            // 4. Fechar menu mobile se estiver aberto
+            const navbar = document.getElementById('navbar');
+            navbar.classList.remove('mobile-active');
+        }
+
+        function toggleMobileMenu() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('mobile-active');
+        }
+
+        // Inicializar na Home
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
