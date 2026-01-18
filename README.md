@@ -1,6 +1,6 @@
 Consultoria
 
-forneça um readme profissional do codigo
+
 📄 Verkupp - Consultoria de TI Estratégica
 📌 Visão Geral
 Este é um site institucional responsivo para a Verkupp Consultoria de TI Estratégica, desenvolvido como uma SPA (Single Page Application) puramente com HTML, CSS e JavaScript (sem frameworks). O projeto apresenta uma interface moderna, otimizada para conversão e navegação fluida entre seções.
