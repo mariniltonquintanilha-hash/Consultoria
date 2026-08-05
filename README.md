@@ -1,148 +1,45 @@
-Consultoria
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
+# Verkupp — Consultoria de TI Estratégica
 
-📄 Verkupp - Consultoria de TI Estratégica
-📌 Visão Geral
-Este é um site institucional responsivo para a Verkupp Consultoria de TI Estratégica, desenvolvido como uma SPA (Single Page Application) puramente com HTML, CSS e JavaScript (sem frameworks). O projeto apresenta uma interface moderna, otimizada para conversão e navegação fluida entre seções.
+> Site de consultoria de tecnologia da informação
 
-🚀 Características Principais
-✅ Design Moderno & Profissional – Paleta com cores corporativas (azul, ciano, tons escuros)
+## 📌 Sobre o Projeto
 
-✅ Totalmente Responsivo – Adaptação para mobile, tablet e desktop
+Site institucional de consultoria de TI com apresentação de serviços, soluções por área de atuação e canal para propostas.
 
-✅ SPA Nativa (JavaScript Vanilla) – Navegação entre páginas sem recarregamento
+## ✨ Funcionalidades
 
-✅ 6 Seções Principais:
+- Serviços de consultoria estratégica em TI
+- Apresentação de soluções por área
+- Seção sobre a consultoria
+- Contato para propostas
+- Layout corporativo e responsivo
 
-Home (com 6 subseções: Hero, Serviços, Casos, Tecnologias, Processo, CTA)
+## 🛠️ Tecnologias Utilizadas
 
-Serviços Detalhados
+| Tecnologia | Descrição |
+|------------|-----------|
+| **HTML5** | Estrutura semântica e acessível da página |
+| **CSS3** | Estilo visual, layout e responsividade |
+| **JavaScript** | Interatividade, manipulação do DOM e lógica do cliente |
 
-Casos de Sucesso
+## 🚀 Como Executar
 
-Equipe
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/mariniltonquintanilha-hash/Consultoria.git
+   ```
+2. Abra o arquivo `index.html` no navegador.
 
-Blog
+## 📁 Estrutura do Projeto
 
-Contato
+```
+├── index.html    → Página principal
+├── style.css     → Estilos e responsividade
+└── script.js     → Interatividade e lógica
+```
 
-✅ Menu de Navegação Interativo – com estado ativo e efeitos hover
+## 📄 Licença
 
-✅ Formulário de Contato Funcional – com validação básica e feedback
-
-✅ Footer Completo – com links, informações e redes sociais
-
-✅ Animações Suaves – transições e efeitos visuais
-
-🛠️ Tecnologias Utilizadas
-Tecnologia	Descrição
-HTML5	Estrutura semântica
-CSS3	Estilos customizados com variáveis CSS
-JavaScript	Lógica SPA e interatividade
-Google Fonts	Fontes Inter e Space Grotesk
-Font Awesome	Ícones
-CSS Grid/Flex	Layouts responsivos
-📁 Estrutura do Código
-text
-index.html
-├── <head>
-│   ├── Meta tags e viewport
-│   ├── Fontes (Google Fonts)
-│   ├── Ícones (Font Awesome)
-│   └── CSS interno (estilos completos)
-├── <body>
-│   ├── Header / Navegação
-│   ├── Seções da SPA (6 páginas)
-│   │   ├── Home (6 subseções)
-│   │   ├── Serviços
-│   │   ├── Casos de Sucesso
-│   │   ├── Equipe
-│   │   ├── Blog
-│   │   └── Contato
-│   ├── Footer
-│   └── JavaScript (lógica SPA)
-🧭 Navegação SPA
-O sistema de navegação funciona através de funções JavaScript:
-
-showPage(pageId): Exibe a seção correspondente e oculta as demais.
-
-toggleMobileMenu(): Controla a visibilidade do menu em dispositivos móveis.
-
-Links do menu possuem onclick que chama showPage().
-
-Páginas disponíveis: home, services, success, team, blog, contact.
-
-🎨 Estilos e Design System
-Cores (CSS Variables)
-css
---primary-blue: #0066FF;
---blue-dark: #0052CC;
---cyber-teal: #00D4C6;
---dark-bg: #0A0F1C;
---dark-card: #131A2E;
---gray-bg: #F8FAFC;
---white: #FFFFFF;
-Tipografia
-Títulos: Space Grotesk (700 weight)
-
-Corpo: Inter (300–800 weights)
-
-Componentes
-Botões: btn-primary, btn-outline, btn-cyber
-
-Cards: service-card, case-card, detail-card
-
-Seções: .section-padding, .section-title, .section-subtitle
-
-📱 Responsividade
-O layout se adapta em três breakpoints principais:
-
-Desktop (> 992px) – Layout completo com grids e flex
-
-Tablet (768px – 992px) – Ajustes de fontes e espaçamento
-
-Mobile (< 768px) – Menu hambúrguer, coluna única, ocultação de elementos
-
-⚙️ Funcionalidades JavaScript
-1. Sistema de Páginas (SPA)
-js
-showPage('home'); // Exibe a página inicial
-Gerencia a visibilidade das seções
-
-Atualiza o estado ativo do menu
-
-Faz scroll suave para o topo
-
-2. Menu Mobile
-js
-toggleMobileMenu(); // Alterna abertura/fechamento
-3. Formulário de Contato
-Validação HTML5 (required)
-
-Feedback via alert() (simulação de envio)
-
-📂 Como Usar
-Clone ou faça download do arquivo index.html
-
-Abra no navegador – não requer servidor ou build
-
-Navegue clicando nos links do menu
-
-Teste em dispositivos diferentes para ver a responsividade
-
-🔧 Personalização
-Para alterar cores:
-Modifique as variáveis CSS no seletor :root.
-
-Para alterar conteúdos:
-Edite diretamente o HTML dentro de cada #id da seção correspondente.
-
-Para adicionar novas páginas:
-Crie uma nova <div id="nova-pagina" class="page-section hidden">
-
-Adicione um link no menu: <a onclick="showPage('nova-pagina')">
-
-Atualize a lógica JS se necessário.
-
-📄 Licença e Uso
-Este código é um modelo de site institucional para consultoria de TI. Pode ser usado livremente para fins educacionais, pessoais ou comerciais, com ou sem modificações.
+Projeto desenvolvido para fins de portfólio.
